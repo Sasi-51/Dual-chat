@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#12002a"><title>QuickChat</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header>
+    <div class="brand"><div class="logo">QC</div><div><h1>QUICK CHAT</h1><small>Bluetooth · Instant · Direct</small></div><div class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i><small>SIGNAL</small></div></div>
+    <div class="status" id="statusBar"><span id="led"></span><span id="statusText">Status: Starting…</span><b id="mode">OFFLINE</b></div>
+    <div class="actions"><button id="paired">◈ PAIRED</button><button id="server">▶ SERVER</button><button id="scan">⌕ SCAN</button></div>
+  </header>
+  <section class="devices"><div class="section-title">AVAILABLE DEVICES <span id="deviceCount">0</span><span class="device-hint">Select a paired device to connect</span></div><div id="devices"><p class="muted">Connect the Java bridge, then choose PAIRED or SCAN.</p></div></section>
+  <section class="chat">
+    <div class="chat-head"><div class="avatar">QC</div><div><strong id="peer">QuickChat</strong><small id="peerStatus">Waiting for Bluetooth connection</small></div><button class="disconnect" id="disconnect" title="Disconnect">Disconnect</button><span class="lock">RFCOMM</span></div>
+    <div id="messages" class="messages" aria-live="polite"><div class="welcome">Your private Bluetooth chat starts here.<small>Pair your devices and connect to start messaging.</small></div></div>
+    <div class="transfer" id="transfer"><div class="transfer-top"><span id="transferName">File transfer</span><span id="transferPct">0%</span></div><div class="track"><div id="progress"></div></div></div>
+    <div class="composer"><label class="attach" for="file" title="Attach a file">＋</label><input id="file" type="file" hidden><input id="message" placeholder="Type a message…" autocomplete="off" maxlength="4000"><button id="send" aria-label="Send message">➤</button></div>
+    <div class="composer-note">Messages and files travel directly over Bluetooth Classic RFCOMM.</div>
+  </section>
+  <footer>DIRECT BLUETOOTH · NO INTERNET REQUIRED FOR DEVICE-TO-DEVICE CHAT</footer>
+</main>
+<script src="app.js"></script>
+</body></html>

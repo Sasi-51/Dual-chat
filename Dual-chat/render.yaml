@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: quickchat-realtime-relay
+    runtime: node
+    rootDir: cloud-relay
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
