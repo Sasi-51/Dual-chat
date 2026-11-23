@@ -8,19 +8,31 @@
 <body>
 <main class="app">
   <header>
-    <div class="brand"><div class="logo">QC</div><div><h1>QUICK CHAT</h1><small>Bluetooth · Instant · Direct</small></div><div class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i><small>SIGNAL</small></div></div>
-    <div class="status" id="statusBar"><span id="led"></span><span id="statusText">Status: Starting…</span><b id="mode">OFFLINE</b></div>
-    <div class="actions"><button id="paired">◈ PAIRED</button><button id="server">▶ SERVER</button><button id="scan">⌕ SCAN</button></div>
+    <div class="brand"><div class="logo">QC</div><div><h1>QUICK CHAT</h1><small>Bluetooth · Internet · Instant</small></div><div class="signal" aria-hidden="true"><i></i><i></i><i></i><i></i><small>SIGNAL</small></div></div>
+    <div class="status" id="statusBar"><span id="led"></span><span id="statusText">Status: Select a communication mode</span><b id="mode">OFFLINE</b></div>
+    <div class="mode-switch"><button id="bluetoothMode" class="selected">BLUETOOTH RFCOMM</button><button id="internetMode">INTERNET CHAT</button></div>
+    <div class="actions" id="bluetoothActions"><button id="paired">◈ PAIRED</button><button id="server">▶ SERVER</button><button id="scan">⌕ SCAN</button></div>
   </header>
-  <section class="devices"><div class="section-title">AVAILABLE DEVICES <span id="deviceCount">0</span><span class="device-hint">Select a paired device to connect</span></div><div id="devices"><p class="muted">Connect the Java bridge, then choose PAIRED or SCAN.</p></div></section>
+  <section class="internet-panel" id="internetPanel" hidden>
+    <div class="internet-title">INTERNET CHAT · LIVE WEBSOCKET</div>
+    <div class="internet-fields">
+      <label>Your name<input id="internetName" maxlength="32" value="Guest" placeholder="Enter your name"></label>
+      <label>Room code<input id="roomCode" maxlength="32" value="quickchat123" placeholder="Same code on both devices"></label>
+      <label class="server-field">WebSocket server<input id="relayUrl" value="wss://dual-chat-yvdr.onrender.com" spellcheck="false"></label>
+      <button id="internetConnect">CONNECT</button>
+      <button id="internetDisconnect" class="secondary" disabled>DISCONNECT</button>
+    </div>
+    <p class="internet-help">Open QuickChat on both devices. Use the same room code and server URL.</p>
+  </section>
+  <section class="devices" id="devicesSection"><div class="section-title">AVAILABLE DEVICES <span id="deviceCount">0</span><span class="device-hint">Select a paired device to connect</span></div><div id="devices"><p class="muted">Connect the Java bridge, then choose PAIRED or SCAN.</p></div></section>
   <section class="chat">
-    <div class="chat-head"><div class="avatar">QC</div><div><strong id="peer">QuickChat</strong><small id="peerStatus">Waiting for Bluetooth connection</small></div><button class="disconnect" id="disconnect" title="Disconnect">Disconnect</button><span class="lock">RFCOMM</span></div>
-    <div id="messages" class="messages" aria-live="polite"><div class="welcome">Your private Bluetooth chat starts here.<small>Pair your devices and connect to start messaging.</small></div></div>
+    <div class="chat-head"><div class="avatar">QC</div><div><strong id="peer">QuickChat</strong><small id="peerStatus">Waiting for connection</small></div><button class="disconnect" id="disconnect" title="Disconnect">Disconnect</button><span class="lock" id="connectionType">RFCOMM</span></div>
+    <div id="messages" class="messages" aria-live="polite"><div class="welcome">Your QuickChat conversation starts here.<small>Choose Internet Chat or Bluetooth to connect.</small></div></div>
     <div class="transfer" id="transfer"><div class="transfer-top"><span id="transferName">File transfer</span><span id="transferPct">0%</span></div><div class="track"><div id="progress"></div></div></div>
     <div class="composer"><label class="attach" for="file" title="Attach a file">＋</label><input id="file" type="file" hidden><input id="message" placeholder="Type a message…" autocomplete="off" maxlength="4000"><button id="send" aria-label="Send message">➤</button></div>
-    <div class="composer-note">Messages and files travel directly over Bluetooth Classic RFCOMM.</div>
+    <div class="composer-note" id="composerNote">Bluetooth messages and files travel directly over RFCOMM.</div>
   </section>
-  <footer>DIRECT BLUETOOTH · NO INTERNET REQUIRED FOR DEVICE-TO-DEVICE CHAT</footer>
+  <footer id="footerNote">DIRECT BLUETOOTH · NO INTERNET REQUIRED FOR DEVICE-TO-DEVICE CHAT</footer>
 </main>
 <script src="app.js"></script>
 </body></html>
